@@ -2,10 +2,8 @@
 .model flat, stdcall
 option casemap:none
 
+include		masm32rt.inc
 includelib	msvcrt.lib
-
-printf	proto c:dword,:vararg
-scanf	proto c:dword,:vararg
 
 .data
 c_num1 db 200 dup(0)
@@ -18,7 +16,7 @@ len2   dd 0
 
 formatS		byte	"%s", 0
 formatD		byte	"%d", 0
-
+newline		byte	0ah, 0
 .code
 
 strlen proc         
@@ -75,8 +73,8 @@ convert endp
 main	proc
 	;###### Input two numbers #######;
 
-	invoke scanf, offset formatS, offset c_num1
-	invoke scanf, offset formatS, offset c_num2
+	invoke crt_scanf, offset formatS, offset c_num1
+	invoke crt_scanf, offset formatS, offset c_num2
 
 	;###### End Input two numbers #######;
 
@@ -191,11 +189,13 @@ print_result:
 	add eax, ecx
 	movzx edx, byte ptr [eax]
 	push ecx
-    invoke printf, offset formatD, edx
+    invoke crt_printf, offset formatD, edx
 	pop ecx
     cmp ecx, 0
     jne print_result
 
+	invoke crt_printf, offset newline
+	inkey
 	
 	ret
 main	endp
