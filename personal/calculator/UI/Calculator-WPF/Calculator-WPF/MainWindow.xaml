@@ -1,0 +1,23 @@
+﻿<Window x:Class="Calculator_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculator_WPF"
+        mc:Ignorable="d"
+        Title="Calculator-Assembly Backend" Height="100" Width="300">
+    <Grid Margin="0,0,0,2.5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="33*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="208*"/>
+            <ColumnDefinition Width="87*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Compute" Margin="5,10,6,1" Grid.Column="1" Click="Button_Click"/>
+        <TextBox x:Name="exprTextField" Margin="10,10,2,1" TextWrapping="Wrap" Grid.Row="0" Grid.Column="0" KeyDown="ExprTextField_KeyDown"/>
+        <Label x:Name="resultLabel" Content="The result will be shown here." Margin="10,7,0,0" VerticalAlignment="Top" Padding="2,0,5,0" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Width="188"/>
+
+    </Grid>
+</Window>
