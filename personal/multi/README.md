@@ -4,7 +4,20 @@ input two numbers, then get their product.
 
 ## Windows version
 
-For now, you have to run `Big_Multi.exe` via command line, otherwise, you might not be able to see the result -- the window will be closed immediately after the appearance of the result.
+Recommand building it in `Visual Studio`.
 
-- [ ] pause before exit.
+`big_multi_cmd.exe` should be run in command line, otherwise you might not be able to see the result.
+
+`big_multi_window.exe` will be paused after the result was shown. 
+
+## Linux version
+
+If you are interested in building this version, try the command below.
+
+```
+; nasm required
+; Using Linux and gcc:
+; nasm -f elf multi.asm
+; gcc -o multi multi.o driver.c asm_io.o -m32
+```
 

@@ -2,9 +2,22 @@
 
 Use C# to build UI, Assembly to evaluate expression.
 
-## Reference
+## How to use it ?
 
-https://stackoverflow.com/questions/20752001/passing-strings-from-c-sharp-to-c-dll-and-back-minimal-example
+The executable files are in the `exe` folder.
 
-https://social.msdn.microsoft.com/Forums/en-US/14a805f7-fa69-4605-93aa-89e00299f200/passing-string-to-c-dll?forum=netfxcompact
+Be sure the `ExprEvaluator.dll` is in the same folder as they are.
 
+## Compile
+
+1. Build dll for computation core.
+
+Run the `make.bat` in dll folder in `Developer Command Prompt for VS`.
+
+2. Build UI
+
+Open` Visual Stuido projects` in UI folder, and compile it in `Visutal Stuido`.
+
+- The dll should be put in the working directory. 
+
+- The default working directory is `debug` folder. 
