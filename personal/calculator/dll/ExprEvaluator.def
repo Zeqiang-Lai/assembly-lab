@@ -1,0 +1,4 @@
+LIBRARY ExprEvaluator
+EXPORTS Evaluate
+EXPORTS GetResult
+; EXPORTS [your_exported_proc_name]
