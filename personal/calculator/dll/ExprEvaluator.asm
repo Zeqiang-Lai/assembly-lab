@@ -88,11 +88,11 @@ Init proc
 Init endp
 
 Tokenize_number proc C idx:dword
-	local base:dword, divider:qword, tmp:dword
+	local base:qword, divider:qword, tmp:dword
 
 	; base = 10
 	fild dword ptr [num_ten]
-	fstp dword ptr [base]
+	fstp qword ptr [base]
 
 	; edx = expr[idx]
 	xor edx, edx
@@ -103,13 +103,11 @@ Tokenize_number proc C idx:dword
 	; value = 0
 	fldz
 dowhile_start:
-	fmul dword ptr [base]
+	fmul qword ptr [base]
 	sub edx, '0'
 	mov [tmp], edx
 	fiadd dword ptr [tmp]
 	inc esi
-	mov ebx, [idx]
-	mov [ebx], esi
 	movzx edx, byte ptr [expr+esi]
 	push edx
 	invoke crt_isdigit, dl
@@ -118,14 +116,12 @@ dowhile_start:
 	jne dowhile_start
 
 end_dowhile:
-	mov ebx, [idx]
-	mov esi, [ebx]
 	cmp edx, '.'
 	jne endif_
 
 	;divider = 0.1
 	fld1
-	fidiv dword ptr [base]
+	fdiv qword ptr [base]
 	fstp qword ptr [divider]
 
 	inc esi
@@ -146,17 +142,16 @@ start_while:
 	fstp dword ptr [tmp]
 	fadd dword ptr [tmp]
 	fld qword ptr [divider]
-	fidiv dword ptr [base]
+	fdiv qword ptr [base]
 	fstp qword ptr [divider]
 
-	mov ebx, [idx]
-	mov esi, [ebx]
-	inc esi
-	mov [ebx], esi
+	inc esi	
 	movzx edx, byte ptr [expr+esi]
 	jmp start_while
 
 endif_:
+	mov ebx, [idx]
+	mov [ebx], esi
 	mov esi, [t_len]
 	mov dword ptr [tokens+esi*4], TOK_NUM
 	fstp qword ptr [values+esi*8]
