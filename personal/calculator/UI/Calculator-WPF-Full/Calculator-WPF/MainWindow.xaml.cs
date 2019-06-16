@@ -46,7 +46,7 @@ namespace Calculator_WPF
             {
                 case 0:
                     double result = GetResult();
-                    show = "=" + result.ToString();
+                    show = "=" + string.Format("{0:0.######}", result);
                     break;
                 case 1:
                     show = "Unmatched Parenthesis.";
